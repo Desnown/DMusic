@@ -44,7 +44,7 @@ class SendEmail():
 		while True:
 
 			try:
-				#fazendo login com a função "login()"
+				#fazendo login com o método "login()"
 				self.smtp_obj.login(self.nome, self.passname)
 				print("Logado")
 				break
