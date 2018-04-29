@@ -1,4 +1,3 @@
-'''
 from kivy.config import Config
 Config.set("graphics","width",500)
 Config.set("graphics","height",500)
@@ -20,8 +19,3 @@ class MyApp(App):
 
 if __name__ == "__main__":
     MyApp().run()
-'''
-
-from leitor_arquivo import Leitor_Arquivo
-
-print(Leitor_Arquivo.ler_linhas())
