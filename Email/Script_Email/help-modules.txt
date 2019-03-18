@@ -1,0 +1,26 @@
+from smtp import SMTPAuthenticationError, SMTPSenderRefused
+
+SMTPAuthenticationError ->> Classe para levantamento de um erro ocorrido
+durante a autenticação( usuário ou senha inválida)
+
+SMTPSenderRefused ->> Abilitar a opção "Permitir aplicativos menos seguros"
+
+-----------------------------------------------------------------------------
+from getpass import getpass
+Ocultar senha
+
+-----------------------------------------------------------------------------
+from os.path import basename
+Obtenho o nome do arquivo dentro do diretório passado como parâmetro
+
+-----------------------------------------------------------------------------
+from email.mime.application import MIMEApplication
+MIMEApplication(_data=Dados brutos do arquivo, name=nome do arquivo)
+
+-----------------------------------------------------------------------------
+from email.mime.multipart import MIMEMultipart
+
+-----------------------------------------------------------------------------
+from email.mime.text import MIMEText
+
+-----------------------------------------------------------------------------
