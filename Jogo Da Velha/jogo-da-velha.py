@@ -1,5 +1,5 @@
 #!-*- coding: utf-8 -*-
-#author: Desnown, 02/2019
+#author: Desnown, 02/2019.
 
 '''
 Levei em consideração as seguintes regras da Pep 8:
@@ -13,7 +13,7 @@ Levei em consideração as seguintes regras da Pep 8:
 variável.
 '''
 
-#OBS: O jogo ainda está um pouco "sujo", se quiser, pode edtitá-lo como bem entender
+#OBS: O jogo ainda está um pouco "sujo", se quiser, pode edita-lo como bem entender
 
 from os import system, name
 from pdb import set_trace #DEBUGAR
@@ -21,7 +21,7 @@ from pdb import set_trace #DEBUGAR
 
 def clear_output():
     '''
-    Limpar Tela para que fique melhor a vizualiação
+    Limpar Tela para que fique melhor a visualiação.
     '''
     if name == 'posix':
         system('clear')
@@ -31,7 +31,7 @@ def clear_output():
 
 def display_board(tab):
     '''
-    Função responsável por printar o jogo na tela
+    Função responsável por printar o jogo na tela.
     '''
     clear_output()
     print(f'''
@@ -62,7 +62,7 @@ def player_input():
 
 def place_marker(tab,marker, position):
     '''
-    Função que "carimba" o símbolo no lugar que o player pediu
+    Função que "carimba" o símbolo no lugar que o player pediu.
     '''
     # set_trace() #DEBUG
     if tab[position-1] == ' ':
@@ -92,7 +92,7 @@ def win_check(tab, mark):
 
 def space_check(tab, position):
     '''
-    Retorna um valor booleano(True) caso a posição requisitada esteja vazia
+    Retorna um valor booleano(True) caso a posição requisitada esteja vazia.
     '''
     return tab[position-1] == ' '
 
@@ -115,7 +115,7 @@ def player_choice(tab, jog):
             pos = int(input(f"{jog}, qual posição que você deseja(1-9)\n>: "))
             if pos in range(1,10):
                 if not space_check(tab, pos):
-                    print("\n\nPOSIÇÃO OCUPADA")
+                    print("\n\nPOSIÇÃO OCUPADA.")
                 else:
                     return pos
         except Exception:
@@ -136,7 +136,7 @@ def replay():
     Função responsável por solicitação de um novo jogo, ou não
     '''
 
-    #OBS: Obedecendo a PEP 8 de no máximo 79 caracteres de comprimento
+    #OBS: Obedecendo a PEP 8 de no máximo 79 caracteres de comprimento.
     return input('''Vocês desejam jogar novamente? "SIM" ou "NÃO"
 >: ''').upper().startswith('S'),clear_output()
 
