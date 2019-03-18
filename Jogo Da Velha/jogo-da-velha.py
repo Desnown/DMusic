@@ -98,6 +98,10 @@ def space_check(tab, position):
 
 
 def full_board_check(tab):
+    '''
+    Verificar se o tabuleiro está todo completo, caso esteja,
+    o jogo irá dizer que "DEU VELHA"
+    '''
     for i in range(0,10):
         if space_check(tab, i):
             return False
