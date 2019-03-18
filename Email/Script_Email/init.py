@@ -1,3 +1,8 @@
+#! -*- coding: utf-8 -*-
+#author: Desnown 03/2019
+
+#Módulo responsável por conectar no servidor(só isso '-')
+
 from smtplib import SMTP
 
 smtp_obj = ''
