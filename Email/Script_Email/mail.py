@@ -1,4 +1,6 @@
-# -*- coding:utf-8 -*-
+#! -*- coding: utf-8 -*-
+#author: Desnown 03/2019
+
 
 try:
     import init
