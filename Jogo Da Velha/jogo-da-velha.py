@@ -1,39 +1,38 @@
-#!-*- coding: utf-8 -*-
-#author: Desnown, 02/2019.
+#! -*- coding: utf-8 -*-
+__author__ = 'Desnown'
+__date__ = '02/2019'
 
-'''
-Levei em consideração as seguintes regras da Pep 8:
-    •Use espaços em vez de tabulações para indentação.
-    •Use quatro espaços para cada nível de indentação sintaticamente
-        significativa.
-    •As linhas devem ter 79 caracteres de comprimento, ou menos.
-    •Em um arquivo, as funções e classes devem ser separadas por duas linhas
-        em branco.
-    • Coloque um – e apenas um – espaço antes e depois de uma atribuição de
-variável.
-'''
-
-#OBS: O jogo ainda está um pouco "sujo", se quiser, pode edita-lo como bem entender
 
 from os import system, name
 from pdb import set_trace #DEBUGAR
 
-
+tabuleiro = ['']
 def clear_output():
     '''
-    Limpar Tela para que fique melhor a visualiação.
+    Limpar Tela para que fique melhor a vizualiação
     '''
     if name == 'posix':
         system('clear')
     else:
         system('cls')
 
+def welcome():
+    print(f"""+-----------------------------+
+| WELCOME TO THE TIC-TAC-TOE! |
++-----------------------------+
+| Author: {__author__}             |
+| Date: {__date__}               |
++-----------------------------+\n""")
 
-def display_board(tab):
+
+def display_board(tab=[' ']*9):
+    if len(tab) != 9:
+        print("Só aceitamos 9 posições")
+        exit()
     '''
-    Função responsável por printar o jogo na tela.
+    Função responsável por printar o jogo na tela
     '''
-    clear_output()
+
     print(f'''
   {tab[0]} | {tab[1]} | {tab[2]}  
 -------------
@@ -50,7 +49,7 @@ def player_input():
     '''
     market = ''
     while market is not ('X' or 'O'):
-        market = input('Player 1, qual você prefere, X ou O\n>: ').upper()
+        market = input('Qual vc prefere, X ou O\n>: ').upper()
 
         if market == "X":
             return ('X', 'O')
@@ -62,7 +61,7 @@ def player_input():
 
 def place_marker(tab,marker, position):
     '''
-    Função que "carimba" o símbolo no lugar que o player pediu.
+    Função que "carimba" o símbolo no lugar que o player pediu
     '''
     # set_trace() #DEBUG
     if tab[position-1] == ' ':
@@ -92,16 +91,12 @@ def win_check(tab, mark):
 
 def space_check(tab, position):
     '''
-    Retorna um valor booleano(True) caso a posição requisitada esteja vazia.
+    Retorna um valor booleano(True) caso a posição requisitada esteja vazia
     '''
     return tab[position-1] == ' '
 
 
 def full_board_check(tab):
-    '''
-    Verificar se o tabuleiro está todo completo, caso esteja,
-    o jogo irá dizer que "DEU VELHA"
-    '''
     for i in range(0,10):
         if space_check(tab, i):
             return False
@@ -113,13 +108,15 @@ def player_choice(tab, jog):
     Escolher a posição onde o usuário quer jogar.
     '''
     pos = 10
-    # set_trace()
+    # set_trace() #DEBUG
     while True:
         try:
             pos = int(input(f"{jog}, qual posição que você deseja(1-9)\n>: "))
             if pos in range(1,10):
                 if not space_check(tab, pos):
-                    print("\n\nPOSIÇÃO OCUPADA.")
+                    clear_output()
+                    print(f"POSIÇÃO {pos} ESTÁ OCUPADA")
+                    display_board(tabuleiro)
                 else:
                     return pos
         except Exception:
@@ -140,60 +137,70 @@ def replay():
     Função responsável por solicitação de um novo jogo, ou não
     '''
 
-    #OBS: Obedecendo a PEP 8 de no máximo 79 caracteres de comprimento.
+    #OBS: Obedecendo a PEP 8 de no máximo 79 caracteres de comprimento
     return input('''Vocês desejam jogar novamente? "SIM" ou "NÃO"
->: ''').upper().startswith('S'),clear_output()
+>: ''').upper().startswith('SIM'),clear_output()
 
 
 #Limpar tela
 clear_output()
+#printar uma mensagem de boas vindas.
+welcome()
 #Guardar os pontos de cada um
 pontos = {'Player 1': 0, 'Player 2': 0}
-print("Bem Vindo ao jogo da velha!")
+#Player escola X ou O #DEBUG
+player1_marker, player2_marker = player_input()
+#Jogador primario
+player_1 = 'Player 1'
+#Jogador secundário
+player_2 = 'Player 2'
 
+# set_trace() #DEBUG
 while True:
+    #Tabuleiro(list) com 9 espaços.
     tabuleiro = [' '] * 9
-    player1_marker, player2_marker = player_input()
     #Mantem o jogo percorrendo
     game_on = True
-    jogador = 'Player 1'
-    #Marcador do jogador( X ou O )
-    marker = ''
 
     while game_on:
+        print(f"{player_1} começa a partida")
         #printa o jogo/tabuleiro
+        clear_output()
         display_board(tabuleiro)
-        if jogador == 'Player 1':
+        if player_1 == 'Player 1':
             # set_trace() #DEBUG
-            position = player_choice(tabuleiro, jogador)
+            position = player_choice(tabuleiro, player_1)
             place_marker(tabuleiro,player1_marker, position)
 
         else:
-            position = player_choice(tabuleiro, jogador)
-            place_marker(tabuleiro,player2_marker, position)
+            position = player_choice(tabuleiro, player_1)
+            place_marker(tabuleiro,player1_marker, position)
 
-        if win_check(tabuleiro, marker):
+        if win_check(tabuleiro, player1_marker):
+            clear_output()
             display_board(tabuleiro)
-            print(f"\n{jogador.upper()} GANHOU!!!")
-            # set_trace()
-            pontos[jogador]+=1
+            print(18*'-')
+            print(f"\n{player_1.upper()} GANHOU!!!")
+            # set_trace() #DEBUG
+            pontos[player_1]+=1
             print_points(pontos)
+            display_board(tabuleiro)
             game_on = False
 
         else:
             if full_board_check(tabuleiro):
+                clear_output()
+                print("   WE TIED!  ")
                 display_board(tabuleiro)
-                print("DEU VELHA!")
                 break
-        # contador +=1
 
-        if jogador == 'Player 1':
-            jogador = 'Player 2'
-            marker = player2_marker
-        else:
-            jogador = 'Player 1'
-            marker = player1_marker
+        player_1, player_2 = player_2, player_1
+        player1_marker, player2_marker = player2_marker, player1_marker
 
-
+    # set_trace() #DEBUG
     if not replay()[0]:
         break
+
+    else:
+        player_1, player_2 = player_2, player_1
+        player1_marker, player2_marker = player2_marker, player1_marker
