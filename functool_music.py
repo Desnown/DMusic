@@ -6,8 +6,9 @@ caminho_proj = getcwd()
 chdir(caminho_proj)
 
 def namefile(file):
-    '''Retorna o nome da musica mas sem a extensao.
+    '''Retorna somente o nome da musica.
     '''
+
     file = file.replace('\n', '')
 
     try:
@@ -43,18 +44,16 @@ def search_music_path(pasta='~'):
         chdir(home_user()+'/Music')    
     except Exception as error:
         cprint(error, 'red', attrs=['bold'])
-        
-    _all_files = listdir()
 
     for ext in _extensoes:
-        _file = glob(ext)
-        if _file == []:
+        file = glob(ext) #O file terá(ou não) vários valores(list)
+        if file == []:
             continue
 
-        for music in _file:
+        for music in file: #percorrendo cada valor
             all_musics.append(music)
         
-    return _all_musics
+    return all_musics
 
 
 def search_music(music):
@@ -73,20 +72,12 @@ def read_file(pasta='./'):
     '''Funcao responsavel por ler o que tem dentro do arquivo(arg)
     e retorna-lo.
     '''    
-    
 
     with open(f'{caminho_proj}/Songs.txt') as read_lin:
         return read_lin.readlines()
-
-
-def shorten_music(music):
-    music = namefile(music)
-    if len(music) > 30:
-        return music[:30]+'...'
-
-    return music
-
+    
 
 def home_user(path='~'):
+	'''Encontra a pasta $HOME do usuario
     from os.path import expanduser
     return expanduser(path)
