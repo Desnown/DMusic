@@ -54,7 +54,7 @@ def search_music_path(pasta='~'):
         for music in _file:
             all_musics.append(music)
         
-    eturn _all_musics
+    return _all_musics
 
 
 def search_music(music):
