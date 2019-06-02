@@ -1,7 +1,0 @@
-Todos os pacotes( base ) para utilização do player:
-
-glob2
-kivy
-kivymd
-termcolor
-python-vlc
