@@ -1,6 +1,6 @@
-Seja bem vindo...
+**Seja bem vindo...**
 
-o DMusic é um player de música simples, usando o kivy e kivymd para a criação da Interface Gráfica.
+O DMusic é um player de música simples, usando o kivy e kivymd para a criação da Interface Gráfica.
 
 # Info
 
