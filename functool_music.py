@@ -12,12 +12,12 @@ def namefile(file):
     file = file.replace('\n', '')
 
     try:
-        return file.split('.')[0]
+        return ' '.join(file.split('.')[:-1])
     except Exception as error:
         cprint(error, 'red', attrs=['bold'])
 
 
-def search_music_path(pasta='~'):
+def search_music_path(pasta='/Music'):
     '''Funcao responsavel por procurar todos os arquivos de musicas
     `.wav; .ogg; .mp3; .m4a`  na pasta e retorna-los.
     '''
@@ -31,17 +31,8 @@ def search_music_path(pasta='~'):
     try:
         #Este caminho nn é o correto( argumento pasta é o correto)
         #Vai ser arrumado posteriormente usando o filechooser(kivy)
-        chdir(home_user()+'/Musicas')
-    except:
-        pass
-
-    try:
-        chdir(home_user()+'/Musics')
-    except:
-        pass
-
-    try:
-        chdir(home_user()+'/Music')    
+        chdir(home_user()+pasta)
+ 
     except Exception as error:
         cprint(error, 'red', attrs=['bold'])
 
@@ -58,7 +49,7 @@ def search_music_path(pasta='~'):
 
 def search_music(music):
     '''Funcao responsavel por procurar uma musica(arg) dentro do arquivo
-    - Songs.txt - e retorna-lo(caso ele esteja la dentro).
+    - Songs.txt - e retorna-lo.
     '''
 
     # if music
@@ -75,9 +66,9 @@ def read_file(pasta='./'):
 
     with open(f'{caminho_proj}/Songs.txt') as read_lin:
         return read_lin.readlines()
-    
+
 
 def home_user(path='~'):
-	'''Encontra a pasta $HOME do usuario
-    from os.path import expanduser
-    return expanduser(path)
+	'''Encontra a pasta $HOME do usuario'''
+	from os.path import expanduser
+	return expanduser(path)
