@@ -34,8 +34,6 @@ cor_cinza = [.125, .125, .125, 1]
 cor_azul = [.129,.588,.953, 1]
 
 
-# Window.icon = 'Imagem/icone.png'
-
 class Main(ScreenManager):
     pass
 
@@ -56,6 +54,9 @@ class Abertura(Screen):
         return True
 
     def sair(self,*args, **kwargs):
+        '''Metodo Sair do programa.
+        '''
+
         box = BoxLayout(orientation="vertical", padding=10, spacing=10)
         botoes = BoxLayout(padding=(35,7), spacing=10)
         pop = Popup(title='Deseja mesmo sair ?',
@@ -90,6 +91,7 @@ class Player(Screen):
     Screen responsavel pela parte da musica, `read musics, play, pause, left,
     next, stop, etc`
     '''
+
     musics = ListProperty([])
     song = StringProperty('')
     bt_primary = 'play'
@@ -111,6 +113,7 @@ class Player(Screen):
         '''Metodo responsavel por ler a pasta(nova ou a usada anteriormente - 
            'velha') e adiciona-las no programa( add_widget ).
         '''     
+
         if win == 'nova':
             self.musics = search_music_path()
 
@@ -132,6 +135,7 @@ class Player(Screen):
     def play(self, song):
         '''Metodo responsavel por reproduzir as musicas.
         '''
+
         if song != None:
             self.song = song
             try:
@@ -152,11 +156,13 @@ class Player(Screen):
     def back(self):
         '''Metodo responsavel por reproduzir a musica anterior.
         '''
+
         self.play(self.index(-1))
 
     def pause(self):
         '''Metodo responsavel por pausar a musica.
         '''
+
         if self.chamou:
             self.button('play')
             self.chamou = False
@@ -166,24 +172,25 @@ class Player(Screen):
 
         self.sound.pause()
 
+
     def next(self, *args):
         '''Metodo responsavel por reproduzir a musica seguinte.
         '''
+
         self.play(self.index())
 
     def stop(self):
         '''Metodo responsavel por parar a musica.
         '''
-        self.sound.stop()
 
-    def lenght_music(self):
-        return self.sound.get_length()/60000
+        self.sound.stop()
 
 
     def button(self, _button='pause'):
         '''Metodo responsavel por trocar o botao na hora que ele
             'e' pressionado.
         '''
+
         if _button == 'pause':
             self.bt_primary = 'pause'
 
@@ -196,6 +203,7 @@ class Player(Screen):
         '''Metodo responsavel por pegar o indice da musica atual
            e devolvar o indice da musica anterior(-1) ou posterior(1).
         '''
+
         try:
             if self.musics.index(self.song) == len(self.musics) and arg==1:
                 print(self.musics[0])
@@ -209,25 +217,23 @@ class Player(Screen):
     def adicionar_musics(self):
         '''Adicionar(txt) as novas musicas lidas na pasta selecionada.
         '''
+
         with open(f'{caminho_proj}/Songs.txt', 'w') as self.save:
             # for new in self.new:
             #     self.save.write(new+self.adic)
             self.save.writelines(self.new)
 
     def print_music(self, song):
-        '''Metodo nn muito importante, mas print no terminal o nome da musica
+        '''Metodo não muito importante, mas print no terminal o nome da musica
            que esta sendo tocada
         '''
+
         print('[', end='')
         cprint('INFO', 'green', attrs=['bold'], end='')
         print(f'   ] [Audio       ] Song Played: {self.song}')
 
 
 class BarPlayer(BoxLayout):
-    # def __init__(self, **kwargs):
-    #     super().__init__(**kwargs)
-    #     if len(self.ids.label_music.text)>30:
-    #         self.ids.
     pass
 
 class MYRaisedButton(MDRaisedButton):
