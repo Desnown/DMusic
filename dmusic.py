@@ -26,6 +26,8 @@ from kivymd.list import MDList
 from functool_music import namefile, search_music_path, read_file, caminho_proj
 from pdb import set_trace
 from vlc import MediaPlayer
+from termcolor import cprint
+
 
 
 
@@ -185,6 +187,9 @@ class Player(Screen):
 
         self.sound.stop()
 
+    def lenght_music(self):
+        return self.sound.get_length()/60000
+
 
     def button(self, _button='pause'):
         '''Metodo responsavel por trocar o botao na hora que ele
@@ -250,6 +255,7 @@ class DMusic(App):
     theme_cls.theme_style ='Dark'
 
     def build(self):
+        self.icon = 'Imagem/icone.png'
         return Main()
 
     def on_stop(self):
