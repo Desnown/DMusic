@@ -2,4 +2,9 @@ Dê uma olhada no arquivo `packages.txt` e veja quais são os módulos utilizado
 
 O arquivo `packages.py` é um módulo que faz a instalação desses módulos bases.
 
-*`Run App: python3 dmusic.py`*
+# Executar a App
+python3 dmusic.py
+
+`ou`
+
+python dmusic.py
