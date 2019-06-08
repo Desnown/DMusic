@@ -16,6 +16,6 @@ python3 dmusic.py
 python dmusic.py
 
 
-#Arquivo Exe
+# Arquivo Exe
 
 Agora temos a opção de executar o App no Windows( arquivo exe).
