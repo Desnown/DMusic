@@ -1,4 +1,14 @@
+#/usr/bin/python3
 #! -*- coding: utf-8 -*-
+
+
+#IMPORT PACKAGES
+try:
+    import packages
+    packages.install_module()
+except Exception as module_error:
+    print("Você precisa instalar o programa VLC")
+
 
 #IMPORT KIVY
 from kivy.config import Config
@@ -16,24 +26,25 @@ from kivy.uix.button import Button
 from kivy.clock import Clock
 from kivy.properties import ListProperty, StringProperty
 
+
 #IMPORT KIVYMD
 from kivymd.theming import ThemeManager
 from kivymd.button import MDFillRoundFlatButton, MDRaisedButton
 from kivymd.label import MDLabel
 from kivymd.list import MDList
 
+
 #IMPORTS OTHERS
 from functool_music import namefile, search_music_path, read_file, caminho_proj
-from pdb import set_trace
+# from pdb import set_trace
 from vlc import MediaPlayer
 from termcolor import cprint
-
-
 
 
 #DECLARATION
 cor_cinza = [.125, .125, .125, 1]
 cor_azul = [.129,.588,.953, 1]
+
 
 
 class Main(ScreenManager):
@@ -223,14 +234,11 @@ class Player(Screen):
         '''Adicionar(txt) as novas musicas lidas na pasta selecionada.
         '''
 
-        with open(f'{caminho_proj}/Songs.txt', 'w') as self.save:
-            # for new in self.new:
-            #     self.save.write(new+self.adic)
+        with open('{}/Songs.txt'.format(caminho_proj), 'w') as self.save:
             self.save.writelines(self.new)
 
     def print_music(self, song):
-        '''Metodo não muito importante, mas print no terminal o nome da musica
-           que esta sendo tocada
+        '''Metodo não muito importante, mas print no terminal o nome da musica que esta sendo tocada.
         '''
 
         print('[', end='')
