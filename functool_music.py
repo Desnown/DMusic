@@ -5,6 +5,7 @@ caminho_music = '/home/desnown/Music/'
 caminho_proj = getcwd()
 chdir(caminho_proj)
 
+
 def namefile(file):
     '''Retorna somente o nome da musica.
     '''
@@ -22,8 +23,6 @@ def search_music_path(pasta='/Music'):
     `.wav; .ogg; .mp3; .m4a`  na pasta e retorna-los.
     '''
 
-    #999398827
-
     from os import listdir
     from glob2 import glob
 
@@ -31,46 +30,32 @@ def search_music_path(pasta='/Music'):
     _extensoes = ['*.wav', '*.ogg', '*.mp3', '*.m4a']
 
     try:
-        #Este caminho nn é o correto( argumento pasta é o correto)
-        #Vai ser arrumado posteriormente usando o filechooser(kivy)
-        chdir(home_user()+pasta)
- 
+        # Este caminho nn é o correto( argumento pasta é o correto)
+        # Vai ser arrumado posteriormente usando o filechooser(kivy)
+        chdir(home_user() + pasta)
+
     except Exception as error:
         cprint(error, 'red', attrs=['bold'])
 
     for ext in _extensoes:
-        file = glob(ext) #O file terá(ou não) vários valores(list)
+        file = glob(ext)  # irá retornar uma lista
         if file == []:
             continue
 
-        for music in file: #percorrendo cada valor
+        for music in file:  # percorrendo cada valor
             all_musics.append(music)
-        
+
     return all_musics
 
+# def shorten_music(music):
+#     music = namefile(music)
+#     if len(music) > 30:
+#         return music[:30]+'...'
 
-def search_music(music):
-    '''Funcao responsavel por procurar uma musica(arg) dentro do arquivo
-    - Songs.txt - e retorna-lo.
-    '''
-
-    # if music
-    with open(f'{caminho_proj}/Songs.txt') as _file:
-        for lin in _file:
-            if music in lin:
-                return lin.replace('\n', '') 
+#     return music
 
 
-def read_file(pasta='./'):
-    '''Funcao responsavel por ler o que tem dentro do arquivo(arg)
-    e retorna-lo.
-    '''    
-
-    with open(f'{caminho_proj}/Songs.txt') as read_lin:
-        return read_lin.readlines()
-
-
-def home_user(path='~'):
-	'''Encontra a pasta $HOME do usuario'''
-	from os.path import expanduser
-	return expanduser(path)
+def home_user():
+    '''Encontra a pasta $HOME do usuario'''
+    from os.path import expanduser
+    return expanduser('~')
