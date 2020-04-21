@@ -1,7 +1,7 @@
-from os import chdir, getcwd
+from os import chdir, getcwd, path
 from termcolor import cprint
 
-caminho_music = '/home/desnown/Music/'
+caminho_music = path.expanduser('~')
 caminho_proj = getcwd()
 chdir(caminho_proj)
 
