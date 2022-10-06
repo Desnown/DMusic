@@ -18,8 +18,3 @@ python3 dmusic.py
 `ou`
 
 python dmusic.py
-
-
-# Arquivo Exe
-
-Agora temos a opção de executar o App no Windows( arquivo exe).
